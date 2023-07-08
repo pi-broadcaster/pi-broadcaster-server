@@ -27,7 +27,7 @@ Python 3.9+
 ## Installation
 Download this repo, or clone this repo:
 ```
-git clone https://github.com/pham-tuyen/pi-broadcaster.git
+git clone https://github.com/pi-broadcaster/pi-broadcaster.git
 ```
 Copy `/client/` into your computer, `/server/` into your RPi.
 
