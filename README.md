@@ -11,43 +11,28 @@ This [repository](https://github.com/pham-tuyen/pi-broadcaster) and [pim-gui](ht
 -->
 ## Requirements
 ##### Internet required
-For `/server/`:
 ```
 yt-dlp
 mpg123
-Python 3.7+
-gTTS
-```
-For `/client/`:
-```
-pysftp
-paramiko
-Python 3.9+
+NodeJS v8.4.0+
+node-gtts
 ```
 ## Installation
 Download this repo, or clone this repo:
 ```
-git clone https://github.com/pham-tuyen/pi-broadcaster.git
+git clone https://github.com/pi-broadcaster/pi-broadcaster.git
 ```
-Copy `/client/` into your computer, `/server/` into your RPi.
+Copy into your RPi.
 
 Run these commands in your RPi, in `/server`:
 ```
 sudo apt update
 sudo apt install mpg123
-pip install -r requirements.txt
+npm i --save-dev node-gtts internet-available
 ```
-Run these commands in your computer:
-```
-pip install -r requirements.txt
-```
-Enable SSH in your RPi and set up `.bashrc` to automatically run `main.py` in startup.
+Enable SSH in your RPi and set up `.bashrc` to automatically run `main.js` in startup.
 ## Run
-Reboot your RPi, and run 
-```
-python main.pyw
-```
-in your computer.
+Boot your RPi.
 ## Usage
 Follow the guide in your app.
 ## FAQs
