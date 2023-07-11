@@ -28,7 +28,7 @@ Run these commands in your RPi, in `/server`:
 ```
 sudo apt update
 sudo apt install mpg123
-npm i --save-dev node-gtts internet-available
+npm i 
 ```
 Enable SSH in your RPi and set up `.bashrc` to automatically run `main.js` in startup.
 ## Run
