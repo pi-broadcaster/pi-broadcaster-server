@@ -19,10 +19,18 @@ function internetOn() {
 */
 let config = JSON.parse(fs.readFileSync(path.join(__dirname, "config.json"), "utf8"))
 
+function countFolder() {
+    let count = 0
+    fs.readdirSync(".").forEach(item => {
+        if (/^\d+$/.test(item) && fs.lstatSync(path.join(__dirname, item)).isDirectory()) count++
+    })
+    return count
+}
+
 for(let i = 1; i <= config.length; i++) {
     if (!fs.existsSync(path.join(__dirname, i.toString()))) {
-        fs.mkdirSync(path.join(__dirname, i.toString()))
-        config[i - 1].dir = i
+        fs.mkdirSync(path.join(__dirname, (countFolder() + 1).toString()))
+        config[i - 1].dir = countFolder()
     }
 }
 fs.writeFileSync(path.join(__dirname, "config.json"), JSON.stringify(config))
@@ -64,7 +72,7 @@ function generateText(a) {
             console.log(`make text ok`)
         })
     } catch (err) {
-        console.err(err) 
+        console.error(err) 
         generateText(a)
     }
 }
