@@ -1,0 +1,24 @@
+{
+  "name": "pi-broadcaster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pi-broadcaster/pi-broadcaster.git"
+  },
+  "author": "Pham Tuyen",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/pi-broadcaster/pi-broadcaster/issues"
+  },
+  "homepage": "https://github.com/pi-broadcaster/pi-broadcaster#readme",
+  "devDependencies": {
+    "internet-available": "^1.0.0",
+    "node-gtts": "^2.0.2"
+  }
+}
