@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "node main.js"
+    "test": "node test.js",
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/pi-broadcaster/pi-broadcaster#readme",
   "devDependencies": {
-    "gtts": "^0.2.1"
+    "internet-available": "^1.0.0",
+    "node-gtts": "^2.0.2"
   }
 }
