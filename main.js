@@ -140,7 +140,7 @@ for(let i = 0; i < config.length; i++) {
 
 function play(i) {
     if (config[i].type === "text") {
-        for (let index = 0; i < 3; i++) {
+        for (let index = 0; index < 3; index++) {
             execSync(`mpg123 ${path.join(__dirname, config[i].dir.toString(), "0.mp3")}`)
         }
     } else if (config[i].type === "link") {
@@ -151,20 +151,27 @@ function play(i) {
     }
 }
 
-function playProcess(time, i) {
+function playProcess(time, day, i) {
     let d = new Date()
     let sec = d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds()
     let endDay = 24 * 3600
     let delay
     if (time >= sec) delay = (time - sec) * 1000; else delay = (endDay - sec + time) * 1000
+    let wday = (d.getDay() == 0 ? 7 : d.getDay()) - 1
+    console.log(`set delay ${delay}`)
     setTimeout(() => {
-        play(i)
+        console.log("play")
+        if (day.includes(wday)) {
+            play(i)
+            console.log("play ok")
+        }
+        console.log("play fin")
         playProcess(time, i)
     }, delay)
 }
 
 for(let i = 0; i < config.length; i++) {
-    config[i].time.forEach(time => playProcess(time * 3600, i))
+    config[i].tm.time.forEach(time => playProcess(time * 3600, config[i].tm.day, i))
 }
 
 
