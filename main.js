@@ -41,7 +41,7 @@ function fileFilter(startPath, filter) {
     for (let i = 0; i < files.length; i++) {
         let filename = path.join(startPath, files[i])
         if (filename.endsWith(filter)) {
-            if (filter == ".webm") {
+            if (filter == ".webm" && fs.existsSync(filename.replace(".webm", ".mp3"))) {
                 fs.unlinkSync(filename.replace(".webm", ".mp3"))
             }
             fs.unlinkSync(filename)
@@ -165,21 +165,24 @@ function playProcess(time, day, i) {
     let endDay = 24 * 3600
     let delay
     if (time >= sec) delay = (time - sec) * 1000; else delay = (endDay - sec + time) * 1000
-    let wday = (d.getDay() == 0 ? 7 : d.getDay()) - 1
     console.log(`set delay ${delay}`)
+    console.log(`play process ${i}`)
+    console.log(`play at ${(Math.floor(delay / 3600000)).toString()}:${(Math.floor(((delay / 3600000) * 60) % 60)).toString()}`)
     setTimeout(() => {
+        let wd = new Date()
+        let wday = (wd.getDay() == 0 ? 7 : wd.getDay()) - 1
         console.log("play")
         if (day.includes(wday)) {
             play(i)
             console.log("play ok")
         }
         console.log("play fin")
-        playProcess(time, i)
+        playProcess(time, day, i)
     }, delay)
 }
 
 for(let i = 0; i < config.length; i++) {
-    config[i].tm.time.forEach(time => playProcess(time * 3600, config[i].tm.day, i))
+    config[i].tm.forEach(tm => playProcess(tm.time * 3600, tm.day, i))
 }
 
 
