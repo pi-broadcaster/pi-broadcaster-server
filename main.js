@@ -154,6 +154,11 @@ function play(i) {
     } else if (config[i].type === "link") {
         execSync(`mpg123 ${path.join(__dirname, config[i].dir.toString(), `${config[i].index}.mp3`)}`)
         config[i].index += 1
+        let count = 0
+        fs.readdirSync(config[i].dir.toString()).forEach(item => {
+            if (item.endsWith(".mp3")) count += 1
+        })
+        if (config[i].index === count) config[i].index = 0
         fs.writeFileSync(path.join(__dirname, "config.json"), JSON.stringify(config))
         config = JSON.parse(fs.readFileSync(path.join(__dirname, "config.json"), "utf8"))
     }
