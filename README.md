@@ -16,6 +16,7 @@ yt-dlp
 mpg123
 NodeJS v8.4.0+
 node-gtts
+Python 3.7+
 ```
 ## Installation
 Download this repo, or clone this repo:
