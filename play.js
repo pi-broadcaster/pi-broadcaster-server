@@ -1,23 +1,23 @@
-const fs = require("fs")
-const path = require("path")
-const {execSync} = require('child_process')
+import fs from "fs"
+import path from "path"
+import { execSync } from "child_process"
 
-let config = JSON.parse(fs.readFileSync(path.join(__dirname, "config.json"), "utf8"))
+let config = JSON.parse(fs.readFileSync("config.json", "utf8"))
 function play(i) {
     if (config[i].type === "text") {
         for (let index = 0; index < 3; index++) {
-            execSync(`mpg123 ${path.join(__dirname, config[i].dir.toString(), "0.mp3")}`)
+            execSync(` mpg123 ${path.join(config[i].dir.toString(), "0.mp3")}`)
         }
     } else if (config[i].type === "link") {
-        execSync(`mpg123 ${path.join(__dirname, config[i].dir.toString(), `${config[i].index}.mp3`)}`)
+        execSync(` mpg123 ${path.join(config[i].dir.toString(), `${config[i].index}.mp3`)}`)
         config[i].index += 1
         let count = 0
         fs.readdirSync(config[i].dir.toString()).forEach(item => {
             if (item.endsWith(".mp3")) count += 1
         })
         if (config[i].index === count) config[i].index = 0
-        fs.writeFileSync(path.join(__dirname, "config.json"), JSON.stringify(config))
-        config = JSON.parse(fs.readFileSync(path.join(__dirname, "config.json"), "utf8"))
+        fs.writeFileSync("config.json", JSON.stringify(config))
+        config = JSON.parse(fs.readFileSync("config.json", "utf8"))
     }
 }
 
