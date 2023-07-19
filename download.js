@@ -10,7 +10,7 @@ async function getList(a) {
         timeout: 1000,
         retries: 10,
     }).then(function(){
-        let output = execSync(` yt-dlp -j --flat-playlist ${a.id}`).toString()
+        let output = execSync(` yt-dlp -j --flat-playlist ${a.id} --playlist-reverse`).toString()
         data = JSON.parse(`[${output.replace(/\n/g, ",").substr(0, output.length - 1)}]`)
     }).catch(async function(err){
         console.error(err)
